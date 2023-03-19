@@ -1,5 +1,5 @@
 function fh = FFTin2subDFT(f,L1,L2)
-    f = reshape(f,L1,L2);
+    f = reinterpretMixed(f,L1,L2);
     fh = zeros(L1,L2);      th = zeros(L1,L2);
 
 
@@ -28,5 +28,5 @@ function fh = FFTin2subDFT(f,L1,L2)
         end
     end
 
-   fh = reshape(fh.',1,[]);
+   fh = uninterpretMixed(fh);
 end

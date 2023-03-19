@@ -5,7 +5,8 @@ function fh = FFTmixed1(f,p)
 
     else
         L1 = p(end);            L2 = prod(p(1:end-1));
-        f = reshape(f,L1,L2);   fh = zeros(L1,L2);          th = zeros(L1,L2);
+        f = reinterpretMixed(f,L1,L2);   
+        fh = zeros(L1,L2);      th = zeros(L1,L2);
 
 
         % first FFT over the rows
@@ -25,6 +26,6 @@ function fh = FFTmixed1(f,p)
             fh(:,n2+1) = FFTmixed1(th(:,n2+1),1);
         end
 
-        fh = reshape(fh.',1,[]);
+        fh = uninterpretMixed(fh);
     end
 end

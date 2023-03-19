@@ -5,7 +5,8 @@ function fh = FFTmixed2(f,p)
 
     else
         [p1,p2,L1,L2] = niceFactors(p);
-        f = reshape(f,L1,L2);       fh = zeros(L1,L2);      th = zeros(L1,L2);
+        f = reinterpretMixed(f,L1,L2);       
+        fh = zeros(L1,L2);      th = zeros(L1,L2);
 
         % first FFT over the rows
         for k1 = 0:L1-1                        
@@ -25,6 +26,6 @@ function fh = FFTmixed2(f,p)
         end
 
         % transposition
-        fh = reshape(fh.',1,[]);
+        fh = uninterpretMixed(fh);
     end
 end
