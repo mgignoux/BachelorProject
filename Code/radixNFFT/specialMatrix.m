@@ -11,5 +11,4 @@ function E = specialMatrix(M,N,setting)
             E(i+1,j+1) = exp(key*2*pi*1i*i*j/N);
         end
     end
-
 end

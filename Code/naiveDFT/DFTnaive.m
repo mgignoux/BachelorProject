@@ -6,5 +6,5 @@ function fh = DFTnaive(f)
         for k=0:L-1                                           
             fh(n+1) = fh(n+1) + f(k+1)*exp(-2*pi*1i*n*k/L);          
         end                                    
-    end                                  
+    end  
 end

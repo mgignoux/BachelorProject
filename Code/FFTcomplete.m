@@ -1,7 +1,10 @@
-function fh = FFTmixed2(f,p)
-    tic
+function fh = FFTcomplete(f,p)
+
     if length(p) == 1
         fh = DFTnaive(f);
+
+    elseif (length(p) == 2) && iscoprime(p) % WARNING
+        fh = FFTPFA(f,p(1),p(2));
 
     else
         [p1,p2,L1,L2] = niceFactors(p);
@@ -10,7 +13,7 @@ function fh = FFTmixed2(f,p)
 
         % first FFT over the rows
         for k1 = 0:L1-1                        
-            th(k1+1,:) = FFTmixed2(f(k1+1,:),p2);        
+            th(k1+1,:) = FFTcomplete(f(k1+1,:),p2);        
         end        
 
         % twiddles
@@ -22,11 +25,10 @@ function fh = FFTmixed2(f,p)
         
         % second FFT over columns
         for n2 = 0:L2-1
-            fh(:,n2+1) = FFTmixed2(th(:,n2+1),p1);
+            fh(:,n2+1) = FFTcomplete(th(:,n2+1),p1);
         end
 
         % transposition
         fh = uninterpretMixed(fh);
     end
-    toc
 end

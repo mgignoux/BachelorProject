@@ -1,11 +1,12 @@
 function fh = FFTr2(f)
+    tic
     L = length(f);                                                  
 
     if L==1 % base case (x->x)                                      
         fh = f(1);
     
     elseif mod(L/2,1) ~= 0 % incorrect input check               
-        fprintf('input vector has incorrect dimensions \n\n')
+        fh = DFTnaive(f);
 
     else % recursion                                        
         fh = zeros(1,L);                                            
@@ -17,4 +18,5 @@ function fh = FFTr2(f)
             fh(n+1+L/2) = fhe(n+1) - exp(-2*pi*1i*n/L)*fho(n+1);    % O(2)
         end
     end 
+    toc
 end

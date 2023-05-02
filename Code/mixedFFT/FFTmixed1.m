@@ -1,5 +1,4 @@
 function fh = FFTmixed1(f,p)
-
     if length(p) == 1
         fh = DFTnaive(f);
 
