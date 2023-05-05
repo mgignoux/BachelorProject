@@ -11,9 +11,18 @@ $$\begin{aligned}
 \end{aligned}$$
 
 To break this down step-by-step, for the radix-2 FFT this is doing 
-1. let $f_e=\{f_m\}_{m \text{ even}}$ and $f_o=\{f_m\}_{m \text{ odd}}$
-2. find $\hat{f}_e$ and $\hat{f}_o$ recursively 
-3. loop over $n$ to find $\hat{f}[n]$ and $\hat{f}[n+L/2]$ for $n=0,\dots,L/2-1$
+1. let 
+$f_e=\{f_m\}_{m \text{ even}}$
+ and 
+ $f_o=\{f_m\}_{m \text{ odd}}$
+2. find $\hat{f}_e$ and 
+$\hat{f}_o$ 
+recursively 
+3. loop over $n$ to find 
+$\hat{f}[n]$
+ and 
+ $\hat{f}[n+L/2]$
+  for $n=0,\dots,L/2-1$
 
 and for the radix-2 IFFT this is doing
 1. let $\hat{f}_e=\{\hat{f}_m\}_{m \text{ even}}$ and $\hat{f}_o=\{\hat{f}_m\}_{m \text{ odd}}$
