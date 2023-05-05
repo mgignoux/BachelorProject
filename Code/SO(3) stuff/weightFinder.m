@@ -2,6 +2,8 @@
 e = eye(5);
 e = e(:,1);
 
+A = 
+
 w = optimvar('w',5);
 prob = optimproblem;
 prob.Objective = A*w-e;

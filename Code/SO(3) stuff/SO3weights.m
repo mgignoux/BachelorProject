@@ -1,11 +1,15 @@
-function w = SO3weights(L)
-    e = eye(L);
+function w = SO3weights(L, G, Q)
+    A = ProbMatrix(L,G,Q);
+    [Q, Dn] = size(A);
+    e = eye(Dn);
     e = e(:,1);
 
-    w = optimvar('w',L);
+    w = optimvar('w', Q);
     prob = optimproblem;
-    prob.Objective = A*w-e;
+    prob.Objective = A'*w-e;
     prob.Constraints.cons1 = w>=0;
 
-w = solve(prob)
+    sol = solve(prob);
+    w = sol.w;
+    w = w(:, end);
 end

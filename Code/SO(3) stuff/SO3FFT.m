@@ -1,6 +1,7 @@
 function fh = SO3FFT(f,R,L)
 [~,Q] = size(R);
 fh = zeros(L+1,2*L+1,2*L+1);
+weight = SO3weights(L,R,Q);
 
 for n = 0:L
     for i = -n:n
@@ -9,7 +10,7 @@ for n = 0:L
                 alpha = R(1,q);
                 beta = R(2,q);
                 gamma = R(3,q);
-                fh(n+1,i+n+1,j+n+1) = fh(n+1,i+n+1,j+n+1) + (2*n+1)/(2*pi^2)*f(q).*(WignerD(alpha,beta,gamma,n,i,j));
+                fh(n+1,i+n+1,j+n+1) = fh(n+1,i+n+1,j+n+1) + weight(q)*(2*n+1)/(2*pi^2)*f(q).*(WignerD(alpha,beta,gamma,n,i,j));
             end
         end
     end
