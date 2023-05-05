@@ -4,10 +4,12 @@
 
 ## Overview
 The Radix-2 FFT requires splitting $f$ into $f_e$ and $f_o$ and finding their respective Fourier coefficients, and exploiting 
+
 $$\begin{aligned}
 \widehat{f}[n] &= \widehat{f}_e[n]+e^{-\frac{2\pi in}{L}}\widehat{f}_o[n]\\
 \widehat{f}[n+L/2]&=\widehat{f}_e[n] - e^{-\frac{2\pi in}{L}}\widehat{f}_o[n]
 \end{aligned}$$
+
 To break this down step-by-step, for the radix-2 FFT this is doing 
 1. let $f_e=\{f_m\}_{m \text{ even}}$ and $f_o=\{f_m\}_{m \text{ odd}}$
 2. find $\hat{f}_e$ and $\hat{f}_o$ recursively 
