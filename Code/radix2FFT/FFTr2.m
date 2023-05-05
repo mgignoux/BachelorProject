@@ -10,7 +10,7 @@ function fh = FFTr2(f)
 
     else % recursion                                        
         fh = zeros(1,L);                                            
-        fe = evensOrOdds(f,"even"); fo = evensOrOdds(f,"odd");      
+        fe = f(1:2:end); fo = f(2:2:end);      
         fhe = FFTr2(fe); fho = FFTr2(fo);               % called m times
 
         for n = 0:L/2-1                                             % runs L/2 times
