@@ -1,0 +1,32 @@
+function fh = abelianFFT(f,ndims_transformed)
+    dims = size(f);
+    th = zeros(dims);
+%     k_idx_cell = cell(1,length(dims(2:end-ndims_transformed)));
+
+    for k_lin_idx = 1:prod(dims(2:end-ndims_transformed))
+%         [k_idx_cell{:}] = ind2sub(dims(2:end-ndims_transformed),k_lin_idx);
+%         k_idx = cell2mat(k_idx_cell);
+
+        th(:,k_lin_idx) = DFTnaive(f(:,k_lin_idx));
+    end
+
+    abelianFFT(circularReshape(th),ndim_transformed+1)
+
+
+%     i = 0;
+%     fh = zeros(dims);
+%     n_idx_cell = cell(1,ndims(f));
+%     k_idx_cell = cell(1,ndims(f));
+    
+%     for n_lin_idx = 1:numel(f)
+%         [n_idx_cell{:}] = ind2sub(size(f),n_lin_idx);
+%         n_idx = cell2mat(n_idx_cell);
+% 
+%         for k_lin_idx = 1:numel(fh)       
+%             [k_idx_cell{:}] = ind2sub(size(f),k_lin_idx);
+%             k_idx = cell2mat(k_idx_cell);
+            
+%             fh(n_lin_idx) = fh(n_lin_idx) + f(k_lin_idx)*conj(abelRep(n_idx,k_idx,dims));
+%         end
+%     end
+end

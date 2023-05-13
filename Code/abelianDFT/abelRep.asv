@@ -1,0 +1,11 @@
+function rep = abelRep(n_idx,k_idx,dims)
+rep = 1;
+
+for i = 1:length(dims)
+    if 
+    dims(i)
+    rep = rep.*exp(2*pi*i*(n_idx(i)-1)*(k_idx(i)-1)/dims(i));
+end
+
+
+end
