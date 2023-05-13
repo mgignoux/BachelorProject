@@ -22,7 +22,7 @@ function fh = FFTmixed1(f,p)
 
         % second FFT over the columns
         for n2 = 0:L2-1
-            fh(:,n2+1) = FFTmixed1(th(:,n2+1),1);
+            fh(:,n2+1) = FFTmixed1(th(:,n2+1),1); % i think we can just put DFTnaive here, come back to
         end
 
         fh = uninterpretMixed(fh);

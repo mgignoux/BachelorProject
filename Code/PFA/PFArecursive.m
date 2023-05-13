@@ -1,4 +1,4 @@
-function fh = PFA(f,factors)
+function fh = PFArecursive(f,factors)
 
     if length(factors) == 1
         fh = DFTnaive(f);
@@ -6,11 +6,12 @@ function fh = PFA(f,factors)
     else
         L1 = factors(1);    L2 = prod(factors(2:end));
         f = reinterpretPFA(f,L1,L2);
-        fh = zeros(L2,L1);  th = zeros(L1,L2);
+        fh = zeros(L2,L1);                                        
+        th = zeros(L1,L2);
 
         % first FFT over the rows
         for k1 = 0:L1-1                        
-            th(k1+1,:) = PFA(f(k1+1,:),factors(2:end));        
+            th(k1+1,:) = PFArecursive(f(k1+1,:),factors(2:end));        
         end        
             
         % second FFT over columns

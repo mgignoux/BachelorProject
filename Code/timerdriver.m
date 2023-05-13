@@ -20,19 +20,35 @@ legend("radix-2","naive")
 
 %% 
 clear all
-FFTmixed1times = zeros(1,10);
-naivetimes = zeros(1,10);
+n = 1000;
+FFTmixed1times = zeros(1,n);
+naivetimes = zeros(1,n);
+completetimes = zeros(1,n);
 
-for i = 1:10
-    vector = rand(1,i*100);
+for i = 1:n
+    i
+    vector = rand(1,i*10);
     FFTmixed1times(i) = timeit(@() FFTmixed1(vector,factor(length(vector)))); 
     naivetimes(i) = timeit(@() DFTnaive(vector));
+    completetimes(i) = timeit(@() FFTcomplete(vector,factor(length(vector))));
 end
 
 %%
+kb = 20;
+kf = 20;
+completetimesmov = movmean(completetimes,[kb,kf]);
+FFTmixed1timesmov = movmean(FFTmixed1times,[kb,kf]);
+naivetimesmov = movmean(completetimes,[kb,kf]);
+
+%%
 figure
-plot(1:10,FFTmixed1times,1:10,naivetimes)
-legend("radix-mixed","naive")
+plot(1:n,FFTmixed1times,1:n,naivetimes,1:n,completetimes)
+legend("radix-mixed","naive","complete")
+
+%%
+figure
+plot(1:n,FFTmixed1timesmov,1:n,naivetimesmov,1:n,completetimesmov)
+legend("radix-mixed","naive","complete")
 
 %% 
 clear all
