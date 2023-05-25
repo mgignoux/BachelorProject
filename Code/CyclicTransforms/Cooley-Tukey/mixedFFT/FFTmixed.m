@@ -1,4 +1,4 @@
-function fh = FFTmixed1(f,p)
+function fh = FFTmixed(f,p)
     if length(p) == 1
         fh = DFTnaive(f);
 
@@ -10,7 +10,7 @@ function fh = FFTmixed1(f,p)
 
         % first FFT over the rows
         for k1 = 0:L1-1                        
-            th(k1+1,:) = FFTmixed1(f(k1+1,:),p(1:end-1));        
+            th(k1+1,:) = FFTmixed(f(k1+1,:),p(1:end-1));        
         end        
 
         % twiddles
@@ -22,7 +22,7 @@ function fh = FFTmixed1(f,p)
 
         % second FFT over the columns
         for n2 = 0:L2-1
-            fh(:,n2+1) = FFTmixed1(th(:,n2+1),1); % i think we can just put DFTnaive here, come back to
+            fh(:,n2+1) = DFTnaive(th(:,n2+1)); 
         end
 
         fh = uninterpretMixed(fh);

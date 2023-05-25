@@ -1,4 +1,4 @@
-function rep = dihedralRep(k1,k2,n,L)
+function rep = dihedralRep2(k1,k2,n,L)
     if k1 == 0
         rep = [exp(-2*pi*1i*n*k2/L),0;0,exp(2*pi*1i*n*k2/L)];
     end

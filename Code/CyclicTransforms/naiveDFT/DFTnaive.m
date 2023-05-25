@@ -1,6 +1,10 @@
 function fh = DFTnaive(f)
     L = length(f);                                                                    
     fh = zeros(1,L);                                            
+    
+    if iscell(f)
+        f = cell2mat(f);
+    end
 
     for n=0:L-1                                                                      
         for k=0:L-1                                           
