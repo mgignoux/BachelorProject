@@ -13,8 +13,8 @@ function fh = dim2DiProdFFT(f)
                 for j = 1:dim
                     [p1,q1,p2,q2] = getTensorCoef(dim2,i,j);
                     % first FFT over the rows
-                    for k1_2 = 0:1
-                        for k2_2 = 0:L2-1
+                    for k1_2 = 1:-1:0
+                        for k2_2 = L2-1:-1:0
                             helper = dihedralFFT(f(:,:,k1_2+1,k2_2+1));
                             helper2 = helper{n};
                             th(k1_2+1,k2_2+1) = helper2(p1,q1); 

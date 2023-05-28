@@ -1,7 +1,7 @@
 function fh = dihedralFFTOdd(f)
     L = length(f);
     fh = cell(1,2+(L-1)/2);
-    f
+
     FFTsolsRot = DFTnaive(f(1,:));
     FFTsolsRef = DFTnaive(f(2,:));
     IFFTsolsRot = IDFTnaive(f(1,:));

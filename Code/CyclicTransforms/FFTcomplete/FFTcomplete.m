@@ -12,7 +12,7 @@ function fh = FFTcomplete(f,factors)
             PFA = true;
         end
 
-        f = reinterpretComplete(f,L1,L2,PFA);  
+        f = reinterpretComplete(f,L1,L2,PFA==true);  
 
         parfor k1 = 0:L1-1                        
             th(k1+1,:) = FFTcomplete(f(k1+1,:),factors(2:end));        

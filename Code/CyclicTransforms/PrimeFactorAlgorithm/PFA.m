@@ -1,6 +1,6 @@
 function fh = PFA(f,factors)
 
-    if length(factors) == 1
+    if length(factors) == 1 
         fh = DFTnaive(f);
 
     else
