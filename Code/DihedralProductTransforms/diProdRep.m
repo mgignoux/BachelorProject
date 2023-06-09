@@ -1,6 +1,6 @@
 function rep = diProdRep(n,k,Ldims)
     rep = 1;
-
+    
     for l = 1:length(Ldims)
         ktemp = k(2 * l);
         ntemp = n(l);

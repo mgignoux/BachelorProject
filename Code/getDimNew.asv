@@ -1,0 +1,20 @@
+function [dim,dimk] = getDimNew(n,L)
+    
+    dim = 1;
+
+    for i = 1:length(L)
+        dimNext = 1;
+        dimSpec = 1;
+
+        if mod(L(i),2) == 0 && n(i) > 4 || mod(L(i),2) == 1 && n(i) > 2
+            dimNext = 2;
+            if i == 1
+                dimSpec = 2;
+            end
+        end
+
+        dim = dim * dimNext;
+        dimk = dim/dimSpec;
+    end
+
+     

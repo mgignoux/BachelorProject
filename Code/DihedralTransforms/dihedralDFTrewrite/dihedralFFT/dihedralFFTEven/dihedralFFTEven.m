@@ -15,8 +15,8 @@ function fh = dihedralFFTEven(f)
         sum = 0;
         for k1 = 0:1
             for k2 = 0:L-1
-                    sum = sum + f(k1+1,k2+1).*(conj(dihedralRepEven(k1,k2,n,L)));
-                    fh{n+4} = sum;
+                sum = sum + f(k1+1,k2+1).*(conj(dihedralRepEven(k1,k2,n,L)));
+                fh{n+4} = sum;
             end
         end
     end
