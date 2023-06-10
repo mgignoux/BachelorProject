@@ -2,10 +2,10 @@ function fh = dihedralFFTEven(f)
     L = length(f);
     fh = cell(1,3+L/2);
 
-    FFTsolsRot = DFTnaive(f(1,:));
-    FFTsolsRef = DFTnaive(f(2,:));
-    IFFTsolsRot = IDFTnaive(f(1,:));
-    IFFTsolsRef = IDFTnaive(f(2,:));
+    FFTsolsRot = FFTmixed(f(1,:),factor(L));
+    FFTsolsRef = FFTmixed(f(2,:),factor(L));
+    IFFTsolsRot = IFFTmixed(f(1,:),factor(L));
+    IFFTsolsRef = IFFTmixed(f(2,:),factor(L));
 
     for n = 1:L/2-1
         fh{n+4} = [FFTsolsRot(n+1), IFFTsolsRef(n+1); FFTsolsRef(n+1), IFFTsolsRot(n+1)];
