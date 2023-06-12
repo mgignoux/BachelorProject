@@ -11,6 +11,7 @@ function fh = diProdFFT(f)
         thdims = zeros(1,length(fdims)-ndims_transformed/2);
         thdims(1) = 2*Ldims(ndims_transformed/2);
         thdims(2:end) = tholddims(3:end);
+        thdims
         th = zeros(thdims);
 
         for k_lin_idx = 1:prod(tholddims(3:end))
@@ -19,7 +20,7 @@ function fh = diProdFFT(f)
             th(:,k_lin_idx) = helper2;  
         end
 
-        thold = permute(th,circshift(1:length(fdims)-ndims_transformed/2,-1));
+        thold = permute(th,circshift(1:length(thdims),-1));
         size(thold)
     end
 
