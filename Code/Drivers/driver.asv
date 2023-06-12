@@ -65,8 +65,8 @@ legend("naive","mixed","PFA")
 Cnaive = zeros(6,6);
 Cfast = zeros(6,6);
 L = [1,2,3,4,5,6];
-for i = 1:6
-    for s = 1:6  
+for i = 1:7
+    for s = 1:7  
         vector = rand(L(i)*ones(1,s));
         size(vector)
         max_time = max(max(Cnaive));

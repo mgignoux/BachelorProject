@@ -1,6 +1,5 @@
 function fh = abelianDFT(f)
-    dims = size(f)
-    i = 0;
+    dims = size(f);
     fh = zeros(dims);
     n_idx_cell = cell(1,ndims(f));
     k_idx_cell = cell(1,ndims(f));
@@ -13,7 +12,8 @@ function fh = abelianDFT(f)
             [k_idx_cell{:}] = ind2sub(size(f),k_lin_idx);
             k_idx = cell2mat(k_idx_cell);
             
-            fh(n_lin_idx) = fh(n_lin_idx) + f(k_lin_idx)*conj(abelRep(n_idx,k_idx,dims));
+            fh(n_lin_idx) = fh(n_lin_idx) + f(k_lin_idx)*conj(abelianRep(n_idx,k_idx,dims));
         end
     end
 end
+

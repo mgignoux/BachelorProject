@@ -13,7 +13,7 @@ function f = abelianIDFT(fh)
             [n_idx_cell{:}] = ind2sub(size(fh),n_lin_idx);
             n_idx = cell2mat(n_idx_cell);
 
-            f(k_lin_idx) = f(k_lin_idx) + fh(n_lin_idx)*abelRep(n_idx,k_idx,dims);
+            f(k_lin_idx) = f(k_lin_idx) + fh(n_lin_idx)*abelianRep(n_idx,k_idx,dims);
         end
     end
 end

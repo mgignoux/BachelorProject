@@ -8,7 +8,7 @@ function fh = abelianFFT(f,ndims_transformed)
         th = zeros(dims);
     
         for k_lin_idx = 1:prod(dims(2:end))
-            th(:,k_lin_idx) = DFTnaive(f(:,k_lin_idx));
+            th(:,k_lin_idx) = mixedRadixFFT(f(:,k_lin_idx),factor(length(f(:,k_lin_idx))));
             
         end
 
