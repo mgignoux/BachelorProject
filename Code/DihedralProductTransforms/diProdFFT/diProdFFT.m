@@ -1,12 +1,9 @@
-function [fh,x,thold] = dia(f)
+function fh = diProdFFT(f)
     fdims = size(f);
-%     disp(1);
-    finaldims = getthdims(fdims,length(fdims))
+    finaldims = getthdims(fdims,length(fdims));
     ndims_transformed = 0;
- %  dims = getDimNew(n,fdims(2:2:end));
- %   dim = prod(dims);
-     thold = f;
-     Ldims = fdims(2:2:end);
+    thold = f;
+    Ldims = fdims(2:2:end);
 
     while ndims_transformed ~= length(fdims)
         ndims_transformed = ndims_transformed + 2;
@@ -18,7 +15,7 @@ function [fh,x,thold] = dia(f)
 
         for k_lin_idx = 1:prod(tholddims(3:end))
             helper = dihedralFFT(thold(:,:,k_lin_idx));
-            helper2 = cell2mat(cellfun(@(x) x(:)',helper,'UniformOutput',false));
+            helper2 = cell2mat(cellfun(@(x) x(:).',helper,'UniformOutput',false));
             th(:,k_lin_idx) = helper2;  
         end
 
@@ -26,10 +23,9 @@ function [fh,x,thold] = dia(f)
         size(thold)
     end
 
-
-    d = 1;
     fh = cell(finaldims);
     n_idx = cell(1,length(finaldims));
+
     for n_lin_idx = 1:prod(finaldims)    
         [n_idx{:}] = ind2sub(finaldims,n_lin_idx);
         n = cell2mat(n_idx);
@@ -40,12 +36,9 @@ function [fh,x,thold] = dia(f)
         for i = 1:dim
             for j = 1:dim
                 [p,q] = getT(dims,i,j);
-
-                hel = helpy(n,Ldims)+dims-q+(dims-p).*dims;
-
+                hel = helpy(n,Ldims)+p-1+(q-1).*dims;
                 lin_hel = helpy2(hel,2*Ldims);
-                x(d) = lin_hel;
-                d = d+1;
+
                 fhh(i,j) = thold(lin_hel);
             end
         end

@@ -64,7 +64,8 @@ legend("naive","mixed","PFA")
 
 Cnaive = zeros(6,6);
 Cfast = zeros(6,6);
-L = [1,2,3,4,5,6];
+L = 1:6;
+s = 1:6;
 for i = 1:6
     for s = 1:6  
         vector = rand(L(i)*ones(1,s));
@@ -81,46 +82,55 @@ for i = 1:6
 end
 
 %%
-X= [1,2,3,4,5,6,7];
-Y= [1,2,3,4,5,6,7];
+X= [1,2,3,4,5,6];
+Y= [1,2,3,4,5,6];
+%%
+k = 1;
+for s = 1:6
+    for i = 1:6
+    
+        totalL(k) = L(i).^s;
+        AbelNaiveTimes(k) = Cnaive(i,s)
+        AbelFastTimes(k) = Cfast(i,s)
+        k = k + 1;
+    end
+end
 
-    pcolor(X,Y,Cfast)
-    set(gca,'YTick',[1,2,3,4,5,6,7]);
-    colorbar
-    tit=strcat('ensemble mean. iteration:');
-    title(tit,'fontsize', 12)
-    set(gca,'yscale','log')
+%%
+figure
+plot(totalL,AbelNaiveTimes,totalL,AbelFastTimes)
+legend("naive","fast")
 
 %%
 
 colormap(parula)
-pcolor(X,X,Cfast);shading flat
+pcolor(X,X,log(Cfast));shading flat
 FaceColor = 'interp';
-xticks(1:7)
-xticklabels({'1','2','3','4','5','6','7'})
-yticks(1:7)
-yticklabels({'1','2','3','4','5','6','7'})
+xticks(1:6)
+xticklabels({'1','2','3','4','5','6'})
+yticks(1:6)
+yticklabels({'1','2','3','4','5','6'})
 colorbar
-%caxis([13,20])
-title('The Minimal Error','fontsize', 12)
+clim([-12,6])
+title('Log Scaled Time Analysis of Abelian FFT Algorithm on Random Data','fontsize', 16)
 %subtitle('The smallest error obtained throughout the iterations.','fontsize', 12)%add titles 
-xlabel('Number of Observations','fontsize', 12)
-ylabel('Ensemble Size','fontsize', 12)
+xlabel('Size of Composing Cyclic Groups','fontsize', 14)
+ylabel('Number of Composing Groups','fontsize', 14)
 
 %%
 colormap(parula)
-pcolor(X,X,Cnaive);shading flat
+pcolor(X,X,log(Cnaive));shading flat
 FaceColor = 'interp';
-xticks(1:7)
-xticklabels({'1','2','3','4','5','6','7'})
-yticks(1:7)
-yticklabels({'2','4','8','16','32','64','128'})
+xticks(1:6)
+xticklabels({'1','2','3','4','5','6'})
+yticks(1:6)
+yticklabels({'1','2','3','4','5','6'})
 colorbar
-%caxis([13,20])
-title('The Minimal Error','fontsize', 12)
+clim([-12,6])
+title('Log Scaled Time Analysis of Naive Abelian DFT Algorithm on Random Data','fontsize', 16)
 %subtitle('The smallest error obtained throughout the iterations.','fontsize', 12)%add titles 
-xlabel('Number of Observations','fontsize', 12)
-ylabel('Ensemble Size','fontsize', 12)
+xlabel('Size of Composing Cyclic Groups','fontsize', 14)
+ylabel('Number of Composing Groups','fontsize', 14)
 
 %%
 % Dihedral Naive {L}
@@ -167,4 +177,77 @@ legend("naive","fast")
 % DiProd Naive {s,L}
 % DiProd Fast
 
+Dnaive = zeros(6,6);
+Dfast = zeros(6,6);
+L = 2:6;
+
+for i = 2:6
+    for s = 2:6
+        fdims = zeros(1,2*s);
+        fdims(1:2:end) = 2*ones(1,s);
+        fdims(2:2:end) = L(i)*ones(1,s);
+        fdims
+        vector = rand(fdims);
+        size(vector);
+        max_time = max(max(Dnaive));
+
+        if max_time <= 100 
+            Dnaive(i,s) = timeit(@() diProdDFT(vector));
+        else 
+            Dnaive(i,s) = 500;
+        end
+        Dfast(i,s) = timeit(@() diProdFFT(vector));
+    end
+end
+
+%%
+X= [1,2,3,4,5,6];
+Y= [1,2,3,4,5,6];
+%%
+k = 1;
+for s = 1:6
+    for i = 1:6
+    
+        totalL(k) = L(i).^s;
+        DiProdNaiveTimes(k) = Dnaive(i,s)
+        DiProdFastTimes(k) = Dfast(i,s)
+        k = k + 1;
+    end
+end
+
+%%
+figure
+plot(totalL,AbelNaiveTimes,totalL,AbelFastTimes)
+legend("naive","fast")
+
+%%
+
+colormap(parula)
+pcolor(X,X,log(Dfast));shading flat
+FaceColor = 'interp';
+xticks(1:6)
+xticklabels({'1','2','3','4','5','6'})
+yticks(1:6)
+yticklabels({'1','2','3','4','5','6'})
+colorbar
+clim([-12,6])
+title('Log Scaled Time Analysis of Dihedral Product FFT Algorithm on Random Data','fontsize', 16)
+%subtitle('The smallest error obtained throughout the iterations.','fontsize', 12)%add titles 
+xlabel('Size of Composing Cyclic Groups','fontsize', 14)
+ylabel('Number of Composing Groups','fontsize', 14)
+
+%%
+colormap(parula)
+pcolor(X,X,log(Dnaive));shading flat
+FaceColor = 'interp';
+xticks(1:6)
+xticklabels({'1','2','3','4','5','6'})
+yticks(1:6)
+yticklabels({'1','2','3','4','5','6'})
+colorbar
+clim([-12,6])
+title('Log Scaled Time Analysis of Naive Dihedral Product DFT Algorithm on Random Data','fontsize', 16)
+%subtitle('The smallest error obtained throughout the iterations.','fontsize', 12)%add titles 
+xlabel('Size of Composing Cyclic Groups','fontsize', 14)
+ylabel('Number of Composing Groups','fontsize', 14)
 
