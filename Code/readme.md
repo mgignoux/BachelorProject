@@ -18,6 +18,11 @@ Here you can find some general information about the programming side of my proj
 * Windows 10 64-bit
 
 ## Testers and Drivers
+* $\texttt{driver}$: for testing different DFTs
+* $\texttt{cyclicDriver}$: for timing various Cyclic DFT algorithms
+* $\texttt{abelianDriver}$: for timing various Abelian DFT algorithms
+* $\texttt{dihedralDriver}$: for timing various Dihedral DFT algorithms
+* $\texttt{diProdDriver}$: for timing various Dihedral Product DFT algorithms
 
 ## Variable Names
 * $\texttt{f}$ denotes the matrix storing the function outputs
