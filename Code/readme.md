@@ -28,7 +28,7 @@ Here you can find some general information about the programming side of my proj
 * $\texttt{f}$ denotes the matrix storing the function outputs
 * $\texttt{fh}$ ("f hat") denotes the matrix storing the Fourier coefficents
 * $\texttt{t}$ denotes a helper matrix storing values used to calculate the Fourier coefficients
-* $\texttt{th}$ ("t hat") denotes a helper matrix storing values used to calculate the Fourier coefficients that has undergone a Fourier transform
+* $\texttt{th}$ ("t helper") denotes a helper matrix storing values used to calculate Fourier coefficients
 
 ## Functions in MATLAB
 MATLAB uses 1-based indexing. Thus the 0th Fourier coefficient has to be stored in the 1st entry of the matrix.
