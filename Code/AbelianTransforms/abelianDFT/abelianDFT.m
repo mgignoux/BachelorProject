@@ -15,5 +15,7 @@ function fh = abelianDFT(f)
             fh(n_lin_idx) = fh(n_lin_idx) + f(k_lin_idx)*conj(abelianRep(n_idx,k_idx,dims));
         end
     end
+
+    fh = fh / numel(f);
 end
 

@@ -1,17 +1,20 @@
-function fh = abelianFFT(f,ndims_transformed)
+function fh = abelianFFT(f)
     dims = size(f);
+    th_old = f;
+    ndims_transformed = 0;    
 
-    if ndims_transformed == length(dims)
-        fh = f;
+    while not(ndims_transformed == length(dims))
+        thdims = size(th_old); 
+        th = zeros(thdims);
 
-    else 
-        th = zeros(dims);
-    
-        for k_lin_idx = 1:prod(dims(2:end))
-            th(:,k_lin_idx) = mixedRadixFFT(f(:,k_lin_idx),factor(length(f(:,k_lin_idx))));
+        for k_lin_idx = 1:prod(thdims(2:end))
+            th(:,k_lin_idx) = mixedRadixFFT(th_old(:,k_lin_idx),factor(length(th_old(:,k_lin_idx))));
             
         end
-
-        fh = abelianFFT(permute(th,circshift(1:length(dims),-1)),ndims_transformed+1);
+        
+        ndims_transformed = ndims_transformed + 1;
+        th_old = permute(th,circshift(1:length(thdims),-1));
     end
+
+    fh = th_old;
 end

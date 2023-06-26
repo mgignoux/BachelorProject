@@ -4,11 +4,11 @@ function fh = dihedralFFTEven(f)
 
     FFTsolsRot = mixedRadixFFT(f(1,:),factor(L));
     FFTsolsRef = mixedRadixFFT(f(2,:),factor(L));
-    IFFTsolsRot = mixedRadixIFFT(f(1,:),factor(L));
-    IFFTsolsRef = mixedRadixIFFT(f(2,:),factor(L));
+    IFFTsolsRot = mixedRadixIFFT(f(1,:),factor(L))/L;
+    IFFTsolsRef = mixedRadixIFFT(f(2,:),factor(L))/L;
 
     for n = 1:L/2-1
-        fh{n+4} = [FFTsolsRot(n+1), IFFTsolsRef(n+1); FFTsolsRef(n+1), IFFTsolsRot(n+1)];
+        fh{n+4} = [FFTsolsRot(n+1), IFFTsolsRef(n+1); FFTsolsRef(n+1), IFFTsolsRot(n+1)] / 2;
     end
 
     for n = -3:0
@@ -16,7 +16,7 @@ function fh = dihedralFFTEven(f)
         for k1 = 0:1
             for k2 = 0:L-1
                 sum = sum + f(k1+1,k2+1).*(conj(dihedralRepEven(k1,k2,n,L)));
-                fh{n+4} = sum;
+                fh{n+4} = sum / (2*L);
             end
         end
     end

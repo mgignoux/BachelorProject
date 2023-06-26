@@ -8,7 +8,7 @@ function fh = dihedralFFTOdd(f)
     IFFTsolsRef = mixedRadixIFFT(f(2,:),factor(L));
 
     for n = 1:(L-1)/2
-        fh{n+2} = [FFTsolsRot(n+1), IFFTsolsRef(n+1); FFTsolsRef(n+1), IFFTsolsRot(n+1)];
+        fh{n+2} = [FFTsolsRot(n+1), IFFTsolsRef(n+1); FFTsolsRef(n+1), IFFTsolsRot(n+1)] / 2;
     end
 
     for n = -1:0
@@ -16,7 +16,7 @@ function fh = dihedralFFTOdd(f)
         for k1 = 0:1
             for k2 = 0:L-1
                 sum = sum + f(k1+1,k2+1).*(conj(dihedralRepOdd(k1,k2,n,L)));
-                fh{n+2} = sum;
+                fh{n+2} = sum / (2*L);
             end
         end
     end

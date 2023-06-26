@@ -1,6 +1,6 @@
 function fh = diProdFFT(f)
     fdims = size(f);
-    finaldims = getthdims(fdims,length(fdims));
+    finaldims = getFinalDims(fdims,length(fdims));
     ndims_transformed = 0;
     thold = f;
     Ldims = fdims(2:2:end);
@@ -20,7 +20,6 @@ function fh = diProdFFT(f)
         end
 
         thold = permute(th,circshift(1:length(fdims)-ndims_transformed/2,-1));
-        size(thold)
     end
 
     fh = cell(finaldims);
@@ -29,20 +28,20 @@ function fh = diProdFFT(f)
     for n_lin_idx = 1:prod(finaldims)    
         [n_idx{:}] = ind2sub(finaldims,n_lin_idx);
         n = cell2mat(n_idx);
-        dims = getDimNew(n,fdims(2:2:end));
+        dims = getNextDims(n,fdims(2:2:end));
         dim = prod(dims);
-        fhh = zeros(dim,dim);
+        fhMatrix = zeros(dim,dim);
 
         for i = 1:dim
             for j = 1:dim
-                [p,q] = getT(dims,i,j);
-                hel = helpy(n,Ldims)+p-1+(q-1).*dims;
-                lin_hel = helpy2(hel,2*Ldims);
+                [p,q] = getTensorCoefficients(dims,i,j);
+                subHelper = subIndex(n,Ldims)+p-1+(q-1).*dims;
+                linHelper = linearIndex(subHelper,2*Ldims);
 
-                fhh(i,j) = thold(lin_hel);
+                fhMatrix(i,j) = thold(linHelper);
             end
         end
 
-        fh{n_lin_idx} = fhh;
+        fh{n_lin_idx} = fhMatrix;
     end
 end

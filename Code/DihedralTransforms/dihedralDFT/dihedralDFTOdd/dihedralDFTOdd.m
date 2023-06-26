@@ -11,4 +11,6 @@ function fh = dihedralDFTOdd(f)
             end
         end
     end
+   
+    fh = cellfun(@(x) x/(2*L),fh,'UniformOutput',false);
 end

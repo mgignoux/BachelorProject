@@ -1,20 +1,20 @@
-function f = abelianIFFT(fh,ndims_transformed)
+function f = abelianIFFT(fh)
     dims = size(fh);
+    th_old = fh;
+    ndims_transformed = 0;    
 
-    if ndims_transformed == length(dims)
-        f = fh;
+    while not(ndims_transformed == length(dims))
+        thdims = size(th_old); 
+        th = zeros(thdims);
 
-    else 
-        th = zeros(dims);
-    %     k_idx_cell = cell(1,length(dims(2:end-ndims_transformed)));
-    
-        for n_lin_idx = 1:prod(dims(2:end))
-    %         [k_idx_cell{:}] = ind2sub(dims(2:end-ndims_transformed),k_lin_idx);
-    %         k_idx = cell2mat(k_idx_cell);
-    
-            th(:,n_lin_idx) = IDFTnaive(fh(:,n_lin_idx));
+        for k_lin_idx = 1:prod(thdims(2:end))
+            th(:,k_lin_idx) = mixedRadixIFFT(th_old(:,k_lin_idx),factor(length(th_old(:,k_lin_idx))));
+            
         end
-
-        f = abelianIFFT(permute(th,circshift(1:length(dims),1)),ndims_transformed+1);
+        
+        ndims_transformed = ndims_transformed + 1;
+        th_old = permute(th,circshift(1:length(thdims),-1));
     end
+
+    f = th_old;
 end

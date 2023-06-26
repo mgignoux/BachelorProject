@@ -20,4 +20,6 @@ function fh = diProdDFT(f)
             fh{n_lin_idx} = sum;
         end
     end
+
+    fh = cellfun(@(x) x/numel(f),fh,'UniformOutput',false);
 end

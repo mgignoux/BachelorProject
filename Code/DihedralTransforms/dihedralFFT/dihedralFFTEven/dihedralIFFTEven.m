@@ -12,6 +12,6 @@ function f = dihedralIFFTEven(fh)
         end
     end
 
-    f(1,:) = f(1,:) + 2*(IDFTnaive(pad11) + DFTnaive(pad22));
-    f(2,:) = f(2,:) + 2*(DFTnaive(pad12) + IDFTnaive(pad21));
+    f(1,:) = f(1,:) + 2*(mixedRadixIFFT(pad11,factor(length(pad11))) + length(pad22)*mixedRadixFFT(pad22,factor(length(pad22))));
+    f(2,:) = f(2,:) + 2*(length(pad12)*mixedRadixFFT(pad12,factor(length(pad12))) + mixedRadixIFFT(pad21,factor(length(pad21))));
 end
