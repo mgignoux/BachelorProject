@@ -1,20 +1,21 @@
-# The Prime Factorization Algorithm
-* $\texttt{PFA(f,factors)}$ finds the DFT of $f$ using the methodology of the Prime Factorization Algorithm (PFA) using coprime factors given in $\texttt{factors}$
-* $\texttt{IPFA(fh,factors)}$ finds the DFT of $\hat{f}$ using the same methodology
-* $\texttt{reinterpretPFA(f,L1,L2)}$ reinteprets $f$ from a $L$ length vector as a $L_1\times L_2$ matrix
-* $\texttt{uninterpretPFA(f,L1,L2)}$ uninteprets $f$ from an $L_1\times L_2$ matrix back to a $L$ length vector 
+# The Prime Factor Algorithm
+* $\texttt{PFA(f,factors)}$ computes the Cyclic DFT of $f$
+* $\texttt{IPFA(fh,factors)}$ computes the Cyclic IDFT of $\hat{f}$
 
-## Overview
-As an algorithm, this requires doing the following steps to find the transform
-1. let the product of $L_1$ and $L_2$ be the length of $f$ denoted $L$, reinterpret $f[k_1,k_2] = f[L_2k_1+L_1k_2]$ using the $L$-periodicity of $f$
-2. find DFT of the rows of $f$ recurively, and denote $\hat{t}\in\mathbb{C}^{L_2\times L_1}$  
-3. find DFT of the columns of $\hat{t}$ recurively and denote $\hat{f}\in \mathbb{C}^{L_1\times L_2}$
-4. uninterpret $\hat{f}[x] = \hat{f}[n_2,n_1]$ where $x$ is the solution to the Chinese Remainder Theorem problem
-$$\begin{aligned}
-x&\equiv n_1 \mod{L_1}\\
-x&\equiv n_2 \mod{L_2}
-\end{aligned}$$
+## Overview $\texttt{mixedRadixFFT(f,factors)}$
+Given factors $L_1$ and $L_2$ where $L=L_1L_2$ and $L_1$,$L_2$ coprime
 
-## Choices
-* The sizes of $\hat{f}$ and $\hat{t}$ are pre-allocated at execution
-* The Chinese Remainder Theorem problem is solved using the built in MATLAB solver $\texttt{crt}$
+1. Compute Cyclic DFTs: $\widehat{t}[k_1,n_2] = \frac{1}{L_2}\sum_{k_2=0}^{L_2-1}f[k_1,k_2]\omega_{L_2}^{-n_2k_2}$
+3. Compute Cyclic DFTs: $\widehat{f}[n_1,n_2] = \frac{1}{L_1}\sum_{k_1=0}^{L_1-1}\widehat{t}[k_1,n_2]\omega_{L_1}^{-n_1k_1}$
+
+for $n_1=0,\dots,L_1-1$ and $n_2=0,\dots,L_2-1$.
+## Helpers
+* $\texttt{reinterpretPFA(f,L1,L2)}$ rewrites $f[k]$ as $f[k_1,k_2]$
+* $\texttt{uninterprentPFA(M,L1,L2)}$ rewrites $\hat{f}[n]$ as $\hat{f}[n_1,n_2]$
+
+## Notes
+* We know that there are $L$ Fourier coefficients, so we alot $L$ spaces in $\texttt{fh}$ to improve performance
+* $\texttt{IPFA}$ works identically up to normalization and conjugation of the roots of unity
+* MATLABs $\texttt{iscoprime}$ fails to recognize that $\texttt{[2,2,3]}$ contains coprime numbers, and thus can not verify that $\texttt{factors}$ are coprime
+* To remedy this we can check for this case using a statement like $\texttt{length(unique(factors))==length(factors)}$
+* In my testing, this previous method was extremely computationally expensive, and thus the $\texttt{try}$ statement is used instead, which performed best
