@@ -8,7 +8,7 @@ Here you can find some general information about the programming side of my proj
 ## Necessary Toolboxes
 * Signal Processing Toolbox
 * Phased Array System Toolbox
-* DSP Systen Toolbox
+* DSP System Toolbox
 
 ## Computer Specifications
 * AMD Ryzen 5 3600 Processor
