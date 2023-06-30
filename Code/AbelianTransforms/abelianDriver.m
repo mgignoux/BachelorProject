@@ -54,25 +54,3 @@ clim([floor(log(min(min(abelianFFTTimes)))),ceil(log(max(max(abelianDFTTimes))))
 title(["Log Time Analysis of Abelian FFT","on Random Data"],"FontSize",15)
 ylabel('Size of Composing Cyclic Groups (L)','fontsize', 14)
 xlabel('Number of Composing Groups (s)','fontsize', 14)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
