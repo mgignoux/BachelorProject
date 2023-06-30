@@ -1,6 +1,6 @@
 # The Dihedral Product DFT
-* $\texttt{diProdDFT(f)}$ computes the Dihedral Product DFT of $f$
-* $\texttt{diProdIDFT(fh)}$ computes the Dihedral Product IDFT of $\hat{f}$
+* $\texttt{diProdDFT(f)}$ computes the Dihedral Product DFT of $f$ naively
+* $\texttt{diProdIDFT(fh)}$ computes the Dihedral Product IDFT of $\hat{f}$ naively
 
 ## Overview $\texttt{diProdDFT(f)}$
 The naive implementation of the DFT algorithm is simply finding the DFT using the basic mathematics that constitute the DFT. In the dihedral product case this means computing 
@@ -9,7 +9,7 @@ $$
 $$
 ## Helpers
 * $\texttt{diProdRep([n1,...,ns],[k1,...,ks],[L1,...,Ls])}$ computes the $\overline{\left(\bigotimes_{i=1}^s\phi_i^{n_i}(g_i)\right)}$ term
-* $\texttt{abelianRep([n1,...,ns],[g1,...,gs],[L1,...,Ls])}$
+* $\texttt{findDiProdDims(fdims)}$ finds the dimensions of the Fourier coefficients given the dimensions of $\texttt{f}$
 ## Notes
 * Unlike the Cyclic and Abelian case, we now have Fourier matrices, and thus to return them in a sequence we use MATLABs $\texttt{cell}$ structure since MATLAB does not support vectors of different sized matrices
 * We begin by alotting an empty cell array of dimensions given by the helper function $\texttt{findDiProdDims}$ 

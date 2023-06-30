@@ -1,6 +1,6 @@
 # The Prime Factor Algorithm
-* $\texttt{PFA(f,factors)}$ computes the Cyclic DFT of $f$
-* $\texttt{IPFA(fh,factors)}$ computes the Cyclic IDFT of $\hat{f}$
+* $\texttt{PFA(f,factors)}$ computes the Cyclic DFT of $f$ using the PFA
+* $\texttt{IPFA(fh,factors)}$ computes the Cyclic IDFT of $\hat{f}$ using the PFA
 
 ## Overview $\texttt{mixedRadixFFT(f,factors)}$
 Given factors $L_1$ and $L_2$ where $L=L_1L_2$ and $L_1$,$L_2$ coprime
@@ -11,7 +11,7 @@ Given factors $L_1$ and $L_2$ where $L=L_1L_2$ and $L_1$,$L_2$ coprime
 for $n_1=0,\dots,L_1-1$ and $n_2=0,\dots,L_2-1$.
 ## Helpers
 * $\texttt{reinterpretPFA(f,L1,L2)}$ rewrites $f[k]$ as $f[k_1,k_2]$
-* $\texttt{uninterprentPFA(M,L1,L2)}$ rewrites $\hat{f}[n]$ as $\hat{f}[n_1,n_2]$
+* $\texttt{uninterprentPFA(M,L1,L2)}$ rewrites $\hat{f}[n_1,n_2]$ as $\hat{f}[n]$ 
 
 ## Notes
 * We know that there are $L$ Fourier coefficients, so we alot $L$ spaces in $\texttt{fh}$ to improve performance

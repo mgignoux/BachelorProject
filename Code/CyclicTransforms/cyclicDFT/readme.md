@@ -1,6 +1,6 @@
 # The Cyclic DFT
-* $\texttt{cyclicDFT(f)}$ computes the Cyclic DFT of $f$
-* $\texttt{cyclicIDFT(fh)}$ computes the Cyclic IDFT of $\hat{f}$
+* $\texttt{cyclicDFT(f)}$ computes the Cyclic DFT of $f$ naively
+* $\texttt{cyclicIDFT(fh)}$ computes the Cyclic IDFT of $\hat{f}$ naively
 
 ## Overview $\texttt{cyclicDFT(f)}$
 The naive implementation of the DFT algorithm is simply finding the DFT using the basic mathematics that constitute the DFT. In the cyclic case this means computing

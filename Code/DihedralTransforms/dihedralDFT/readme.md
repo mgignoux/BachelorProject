@@ -1,9 +1,9 @@
 # The Dihedral DFT
-* $\texttt{dihedralDFT(f)}$ computes the Dihedral DFT of $f$
-* $\texttt{dihedralIDFT(fh)}$ computes the Dihedral IDFT of $\hat{f}$
+* $\texttt{dihedralDFT(f)}$ computes the Dihedral DFT of $f$ naively
+* $\texttt{dihedralIDFT(fh)}$ computes the Dihedral IDFT of $\hat{f}$ naively
 
 ## Overview $\texttt{DihedralDFT(f)}$
-The naive implementation of the DFT algorithm is simply finding the DFT using the basic mathematics that constitute the DFT. In the dihedral case where $L$ is even this means computing
+The naive implementation of the DFT algorithm is simply finding the DFT using the mathematics that constitute the DFT. In the dihedral case where $L$ is even this means computing
 $$
 \widehat{f}_{ij}\left(\phi^{n}\right)=
 \begin{cases}

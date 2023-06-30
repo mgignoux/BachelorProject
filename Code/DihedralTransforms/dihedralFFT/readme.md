@@ -1,6 +1,6 @@
 # The Dihedral FFT
-* $\texttt{dihedralFFT(f)}$ computes the Dihedral DFT of $f$
-* $\texttt{dihedralIFFT(fh)}$ computes the Dihedral IDFT of $\hat{f}$
+* $\texttt{dihedralFFT(f)}$ computes the Dihedral DFT of $f$ using the algorithm in the thesis
+* $\texttt{dihedralIFFT(fh)}$ computes the Dihedral IDFT of $\hat{f}$ using the algorithm in the thesis
 
 ## Overview $\texttt{dihedralFFT(f)}$
 In the case where $L$ is even, this algorithm is given by
@@ -21,4 +21,4 @@ $$\widehat{f}_{ij}\left(\phi^{n}\right)=\frac{1}{2}\begin{pmatrix}\frac{1}{L}\su
 * $\texttt{dihedralIFFT}$ works identically up to normalization and conjugation of the roots of unity, this is not necessary for the thesis
 * Unlike the Cyclic and Abelian case, we now have Fourier matrices, and thus to return them in a sequence we use MATLABs $\texttt{cell}$ structure since MATLAB does not support vectors of different sized matrices
 * We begin by alotting $L/2-3$ empty cells where we will store the Fourier matrices ($(L-1)/2-1$ empty cells if $L$ is odd)
-* $\texttt{dihedralIFFT}$ quickly computes the Dihedral IDFT (this is not covered in my thesis) using helper functions $\texttt{dihedralPad}$   
+* $\texttt{dihedralIFFT}$ quickly computes the Dihedral IDFT (this is not covered in my thesis) using helper function $\texttt{dihedralPad}$   

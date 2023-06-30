@@ -1,6 +1,6 @@
 # The Abelian FFT
-* $\texttt{abelianFFT(f)}$ computes the Abelian DFT of $f$
-* $\texttt{abelianIFFT(fh)}$ computes the Abelian IDFT of $\hat{f}$
+* $\texttt{abelianFFT(f)}$ computes the Abelian DFT of $f$ using the algorithm in the thesis
+* $\texttt{abelianIFFT(fh)}$ computes the Abelian IDFT of $\hat{f}$ using the algorithm in the thesis
 
 ## Overview $\texttt{abelianFFT(f)}$
 Compute Cyclic DFTs: $$t_i[n_1,\dots,n_i,k_{i+1},\dots,k_s] = \frac{1}{L_i}\sum_{k_i=0}^{L_i-1}t_{i-1}[n_1,\dots,n_{i-1},k_i,\dots,k_s]\omega_{L_i}^{-n_ik_i}$$

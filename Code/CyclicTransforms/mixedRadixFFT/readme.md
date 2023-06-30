@@ -1,6 +1,6 @@
 # The Mixed-Radix FFT
-* $\texttt{mixedRadixFFT(f,factors)}$ computes the Cyclic DFT of $f$
-* $\texttt{mixedRadixIFFT(fh,factors)}$ computes the Cyclic IDFT of $\hat{f}$
+* $\texttt{mixedRadixFFT(f,factors)}$ computes the Cyclic DFT of $f$ using the Mixed-Radix FFT
+* $\texttt{mixedRadixIFFT(fh,factors)}$ computes the Cyclic IDFT of $\hat{f}$ using the Mixed-Radix FFT
 
 ## Overview $\texttt{mixedRadixFFT(f,factors)}$
 Given factors $L_1$ and $L_2$ where $L=L_1L_2$.
@@ -12,9 +12,9 @@ Given factors $L_1$ and $L_2$ where $L=L_1L_2$.
 for $n_1=0,\dots,L_1-1$ and $n_2=0,\dots,L_2-1$.
 ## Helpers
 * $\texttt{reinterpretMixed(f)}$ rewrites $f[k]$ as $f[k_1,k_2]$
-* $\texttt{uninterprentMixed(M)}$ rewrites $\hat{f}[n]$ as $\hat{f}[n_1,n_2]$
+* $\texttt{uninterprentMixed(M)}$ rewrites  $\hat{f}[n_1,n_2]$ as $\hat{f}[n]$
 
 ## Notes
 * We know that there are $L$ Fourier coefficients, so we allot $L$ spaces in $\texttt{fh}$ to improve performance
 * $\texttt{mixedRadixIFFT}$ works identically up to normalization and conjugation of the roots of unity
-* In my testing, the fastest way of recursing was not spliting the factors in half, but instead given a prime factorization $L=L_1'\dots L_s'$ letting $L_1=L_1'$ and $L_2=L_2'\dots L_s'$
+* In my testing, the fastest way of recursing was not spliting the factors in half, but instead given a prime factorization $L=L_1'\dots L_s'$ letting $L_1=L_s'$ and $L_2=L_1'\dots L_{s-1}'$
