@@ -3,7 +3,9 @@
 
 ## Overview $\texttt{diProdFFT(f)}$
 Compute Dihedral DFTs: 
+
 $$\hat{t}_{a_ib_i}(\phi^{n_1}_1,\dots,\phi^{n_i}_i,g_{i+1},\dots,g_s)=\frac{1}{2L_i}\sum_{g_i\in D_{2L_i}}\hat{t}_{a_{i-1}b_{i-1}}(\phi^{n_1},\dots,\phi^{n_{i-1}},g_i,\dots,g_s)\overline{(\phi_i^{n_i})_{a_ib_i}(g_i)}$$
+
 for $1\leq i \leq s$.
 ## The Code
 * The code works in two processes: (1) finding all the Fourier coefficients and storing in a large array and (2) sorting these Fourier coefficients into the Fourier matrices using a cell array
