@@ -57,20 +57,3 @@ clim([floor(log(min(min(diProdFFTTimes)))),ceil(log(max(max(diProdDFTTimes))))])
 title(["Log Time Analysis of Dihedral Product FFT","on Random Data"],"FontSize",15)
 ylabel('Size of Composing Dihedral Groups (2L)','fontsize', 14)
 xlabel('Number of Composing Groups (s)','fontsize', 14)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

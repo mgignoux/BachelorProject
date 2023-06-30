@@ -33,10 +33,8 @@ dihedralFFTAve = movmean(dihedralFFTTimes,[kb,kf]);
 %% DISPLAY PLOTS OF RUNNING AVERAGE RESULTS
 
 figure
-plot(2*(Lmin:Lmax),dihedralDFTAve,2*(Lmin:Lmax),dihedralFFTAve)
+plot(2*(Lmin:Lmax),dihedralDFTAve(Lmin:Lmax),2*(Lmin:Lmax),dihedralFFTAve(Lmin:Lmax))
 legend("naive","fast")
 title(["Time Analysis of Different Dihedral DFT Algorithms","on Random Data with Running Average"],"FontSize",15)
-xlabel('Group Size',"FontSize",15) 
+xlabel('Group Size (2L)',"FontSize",15) 
 ylabel('Run Time (s)',"FontSize",15) 
-
-
