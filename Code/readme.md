@@ -27,7 +27,6 @@ Here you can find some general information about the programming side of my proj
 ## Variable Names
 * $\texttt{f}$ denotes the matrix storing the function outputs
 * $\texttt{fh}$ ("f hat") denotes the matrix storing the Fourier coefficents
-* $\texttt{t}$ denotes a helper matrix storing values used to calculate the Fourier coefficients
 * $\texttt{th}$ ("t helper") denotes a helper matrix storing values used to calculate Fourier coefficients
 
 ## Functions in MATLAB
@@ -35,7 +34,7 @@ MATLAB uses 1-based indexing. Thus the 0th Fourier coefficient has to be stored 
 *  The outputs of a function $f:C_L\rightarrow \mathbb{C}$ are written in a $1\times L$ array $\texttt{f}$ where
 $$f[k+1]=f(r^{k})$$
 *  The outputs of a function $f:C_{L_1}\times\dots\times C_{L_s}\rightarrow \mathbb{C}$ are written in a $L_1\times\dots\times L_s$ array $\texttt{f}$ where
-$$f[k_1+1,...,k_s+1]=f(r^{k_1},\dots r^{k_s})$$
+$$f[k_1+1,...,k_s+1]=f(r^{k_1},\dots ,r^{k_s})$$
 *  The outputs of a function $f:D_{2L}\rightarrow \mathbb{C}$ are written in a $2\times L$ array $\texttt{f}$ where
 $$f[l+1,k+1]=f(s^lr^{k})$$
 *  The outputs of a function $f:D_{2L_1}\times\dots\times D_{2L_s}\rightarrow \mathbb{C}$ are written in a $2\times L_1\times\dots\times 2\times L_s$ array $\texttt{f}$ where
