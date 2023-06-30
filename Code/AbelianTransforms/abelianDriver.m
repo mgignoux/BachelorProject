@@ -27,15 +27,15 @@ shading flat
 s.FaceColor = 'interp';
 s.EdgeColor = [0 0 0];
 s.LineWidth = 1;
-xticks(LMin:LMax)
-xticklabels(string(LMin:LMax))
-yticks(sMin:sMax)
-yticklabels(string(sMin:sMax))
+yticks(LMin:LMax)
+yticklabels(string(LMin:LMax))
+xticks(sMin:sMax)
+xticklabels(string(sMin:sMax))
 colorbar
 clim([floor(log(min(min(abelianFFTTimes)))),ceil(log(max(max(abelianDFTTimes))))])
-title(["Time Analysis of Naive Abelian DFT","on Random Data"],"FontSize",15)
-xlabel('Size of Composing Cyclic Groups','fontsize', 14)
-ylabel('Number of Composing Groups','fontsize', 14)
+title(["Log Time Analysis of Naive Abelian DFT","on Random Data"],"FontSize",15)
+ylabel('Size of Composing Cyclic Groups (L)','fontsize', 14)
+xlabel('Number of Composing Groups (s)','fontsize', 14)
 
 %% DISPLAY PLOTS OF FAST RUNTIME RESULTS
 
@@ -45,15 +45,15 @@ shading flat
 s.FaceColor = 'interp';
 s.EdgeColor = [0 0 0];
 s.LineWidth = 1;
-xticks(LMin:LMax)
-xticklabels(string(LMin:LMax))
-yticks(sMin:sMax)
-yticklabels(string(sMin:sMax))
+yticks(LMin:LMax)
+yticklabels(string(LMin:LMax))
+xticks(sMin:sMax)
+xticklabels(string(sMin:sMax))
 colorbar
 clim([floor(log(min(min(abelianFFTTimes)))),ceil(log(max(max(abelianDFTTimes))))])
-title(["Time Analysis of Abelian FFT","on Random Data"],"FontSize",15)
-xlabel('Size of Composing Cyclic Groups','fontsize', 14)
-ylabel('Number of Composing Groups','fontsize', 14)
+title(["Log Time Analysis of Abelian FFT","on Random Data"],"FontSize",15)
+ylabel('Size of Composing Cyclic Groups (L)','fontsize', 14)
+xlabel('Number of Composing Groups (s)','fontsize', 14)
 
 
 

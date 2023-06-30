@@ -3,7 +3,7 @@ clear all
 %% RUNTIME TESTING
 
 Lmin = 1;                                                    
-Lmax = 1000;                                                    
+Lmax = 3000;                                                    
 naiveTimes = zeros(1,Lmax-Lmin+1);
 mixedRadixTimes = zeros(1,Lmax-Lmin+1);
 PFATimes = zeros(1,Lmax-Lmin+1);
@@ -19,7 +19,10 @@ end
 %% DISPLAY PLOTS OF RUNTIME RESULTS
 
 figure
-plot(Lmin:Lmax,naiveTimes,Lmin:Lmax,mixedRadixTimes,Lmin:Lmax,PFATimes)
+plot(Lmin:Lmax,naiveTimes(1:2000),Lmin:Lmax,PFATimes(1:2000))
+hold on
+pause(2)
+plot(Lmin:Lmax,mixedRadixTimes(1:2000))
 legend("naive","mixed","PFA")
 title(["Time Analysis of Different Cyclic DFT Algorithms","on Random Data"],"FontSize",15)
 xlabel('Group Size',"FontSize",15) 
@@ -36,9 +39,81 @@ PFAAve = movmean(PFATimes,[kb,kf]);
 %% DISPLAY PLOTS OF RUNNING AVERAGE RESULTS
 
 figure
-plot(Lmin:Lmax,naiveAve,Lmin:Lmax,mixedRadixAve,Lmin:Lmax,PFAAve)
+plot(Lmin:Lmax,naiveAve(1:2000),Lmin:Lmax,mixedRadixAve(1:2000),Lmin:Lmax,PFAAve(1:2000))
 legend("naive","mixed","PFA")
 title(["Time Analysis of Different Cyclic DFT Algorithms","on Random Data with Running Average"],"FontSize",15)
 xlabel('Group Size',"FontSize",15) 
-y
 ylabel('Run Time (s)',"FontSize",15) 
+
+%% highly composite
+k=0;
+    for j = 1:50
+        for l = 1:50
+            for p = 1:50
+                for q = 1:50
+                    for w = 1:50
+                        for b = 1:50
+                            k = k + 1;
+                            complist(k) = j^l;
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+complist = unique(complist);
+
+%%
+for i = 1:55
+    mixedComp(i) = mixedFFTTimes(complist(i));
+    PFAComp(i) = PFATimes(complist(i));
+    naiveComp(i) = naiveTimes(complist(i));
+
+end
+%%
+figure
+plot(complist,naiveComp,complist,mixedComp,complist,PFAComp)
+legend("naive","mixed","PFA")
+title(["Time Analysis of Different Cyclic DFT Algorithms","on Random Data at Highly Composite Numbers"],"FontSize",15)
+xlabel('Group Size',"FontSize",15) 
+ylabel('Run Time (s)',"FontSize",15) 
+
+
+%% highly coprime
+
+
+
+%%
+k=1;
+x = primes(100);
+for i = primes(50)
+    i
+    for j = primes(50)
+        j
+        if iscoprime([i,j]) && length(unique([i,j]))==length([i,j])
+            primelist(k) = i*j;
+            k=k+1;
+
+        end
+    end
+end
+
+primelist = unique(primelist)
+%%
+for i = 1:104
+    mixedProd2(i) = mixedFFTTimes(primelist(i));
+    PFAProd2(i) = PFATimes(primelist(i));
+    naiveProd(i) = naiveTimes(primelist(i));
+
+end
+%%
+figure
+plot(primelist,naiveProd,primelist,mixedProd2,primelist,PFAProd2)
+legend("naive","mixed","PFA")
+title(["Time Analysis of Different Cyclic DFT Algorithms","on Random Data at Products of 2 Primes"],"FontSize",15)
+xlabel('Group Size',"FontSize",15) 
+ylabel('Run Time (s)',"FontSize",15) 
+
+
+

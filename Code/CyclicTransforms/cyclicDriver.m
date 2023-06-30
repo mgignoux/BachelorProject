@@ -3,7 +3,7 @@ clear all
 %% RUNTIME TESTING
 
 Lmin = 1;                                                    
-Lmax = 1000;                                                    
+Lmax = 3000;                                                    
 naiveTimes = zeros(1,Lmax-Lmin+1);
 mixedRadixTimes = zeros(1,Lmax-Lmin+1);
 PFATimes = zeros(1,Lmax-Lmin+1);
@@ -22,7 +22,7 @@ figure
 plot(Lmin:Lmax,naiveTimes,Lmin:Lmax,mixedRadixTimes,Lmin:Lmax,PFATimes)
 legend("naive","mixed","PFA")
 title(["Time Analysis of Different Cyclic DFT Algorithms","on Random Data"],"FontSize",15)
-xlabel('Group Size',"FontSize",15) 
+xlabel('Group Size (L)',"FontSize",15) 
 ylabel('Run Time (s)',"FontSize",15) 
 
 %% RUNNING AVERAGE
@@ -39,5 +39,7 @@ figure
 plot(Lmin:Lmax,naiveAve,Lmin:Lmax,mixedRadixAve,Lmin:Lmax,PFAAve)
 legend("naive","mixed","PFA")
 title(["Time Analysis of Different Cyclic DFT Algorithms","on Random Data with Running Average"],"FontSize",15)
-xlabel('Group Size',"FontSize",15) 
+xlabel('Group Size (L)',"FontSize",15) 
 ylabel('Run Time (s)',"FontSize",15) 
+
+

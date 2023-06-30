@@ -2,12 +2,12 @@ clear all
 
 %% RUNTIME TESTING
 
-Lmin = 3;                                                                   
+Lmin = 2;                                                                   
 Lmax = 1000;                                                                
-dihedralDFTTimes = zeros(1,Lmax-Lmin+1);
-dihedralFFTTimes = zeros(1,Lmax-Lmin+1);
+%dihedralDFTTimes = zeros(1,Lmax-Lmin+1);
+%dihedralFFTTimes = zeros(1,Lmax-Lmin+1);
 
-for i = Lmin:Lmax
+for i = 998:Lmax
     fprintf("Testing Dihedral DFT algorithms for group size: %d \n", 2*i)
     vector = rand(2,i) + 1i.*rand(2,i);
     dihedralDFTTimes(i-Lmin+1) = timeit(@() dihedralDFT(vector)); 
@@ -17,10 +17,10 @@ end
 %% DISPLAY PLOTS OF RUNTIME RESULTS
 
 figure
-plot(2*(Lmin:Lmax),dihedralDFTTimes,2*(Lmin:Lmax),dihedralFFTTimes)
+plot(2*(Lmin:Lmax),dihedralDFTTimes(1:997),2*(Lmin:Lmax-Lmin+1),dihedralFFTTimes(1:997))
 legend("naive","fast")
 title(["Time Analysis of Different Dihedral DFT Algorithms","on Random Data"],"FontSize",15)
-xlabel('Group Size (2L)',"FontSize",15) 
+xlabel('Group Size',"FontSize",15) 
 ylabel('Run Time (s)',"FontSize",15) 
 
 %% RUNNING AVERAGE
@@ -33,7 +33,7 @@ dihedralFFTAve = movmean(dihedralFFTTimes,[kb,kf]);
 %% DISPLAY PLOTS OF RUNNING AVERAGE RESULTS
 
 figure
-plot(2*(Lmin:Lmax),dihedralDFTAve,2*(Lmin:Lmax),dihedralFFTAve)
+plot(Lmin:Lmax,dihedralDFTAve(1:999),Lmin:Lmax,dihedralFFTAve(1:999))
 legend("naive","fast")
 title(["Time Analysis of Different Dihedral DFT Algorithms","on Random Data with Running Average"],"FontSize",15)
 xlabel('Group Size',"FontSize",15) 
