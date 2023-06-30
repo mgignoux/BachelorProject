@@ -9,7 +9,7 @@ for $1\leq i \leq s$.
 * The code works in two processes: (1) finding all the Fourier coefficients and storing in a large array and (2) sorting these Fourier coefficients into the Fourier matrices using a cell array
 * All of the other codes do these two things at once, but with how MATLAB works with $s$-dimensional cell array and linear indexing, this was necessary
 ## Helpers
-* $\texttt{getFinalDims([n1,...,ns],[k1,...,ks],[L1,...,Ls])}$ computes the $\overline{\left(\bigotimes_{i=1}^s\phi_i^{n_i}(g_i)\right)}$ term
+* $\texttt{getFinalDims([n1,...,ns],[k1,...,ks],[L1,...,Ls])}$ finds the final dimensions of the Fourier transform
 * $\texttt{getNextDims(fdims)}$ finds the dimensions of the Fourier coefficients given the dimensions of $\texttt{f}$
 * $\texttt{getTensorCoefficients(dims,i,j)}$ given the $ij$-th Fourier matrix and the dimesnions of the representations, finds the sequence of $a_ib_i$ coefficients of the Kronecker product 
 * $\texttt{subIndex([n1,...,ns],[L1,...,Ls])}$ gets the index of the element we are putting in the Fourier matrices
