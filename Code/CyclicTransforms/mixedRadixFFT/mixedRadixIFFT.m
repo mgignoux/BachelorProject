@@ -1,14 +1,14 @@
-function f = mixedRadixIFFT(fh,p)
-    if length(p) == 1
+function f = mixedRadixIFFT(fh,factors)
+    if length(factors) == 1
         f = cyclicIDFT(fh);
 
     else
-        L1 = p(end);            L2 = prod(p(1:end-1));
+        L1 = factors(end);            L2 = prod(factors(1:end-1));
         fh = reinterpretMixed(fh,L1,L2);   
         f = zeros(L1,L2);      th = zeros(L1,L2);
 
         for k1 = 0:L1-1                        
-            th(k1+1,:) = mixedRadixIFFT(fh(k1+1,:),p(1:end-1));        
+            th(k1+1,:) = mixedRadixIFFT(fh(k1+1,:),factors(1:end-1));        
         end        
 
         for k1 = 0:L1-1

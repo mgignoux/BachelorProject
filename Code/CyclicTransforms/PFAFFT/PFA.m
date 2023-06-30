@@ -21,6 +21,7 @@ function fh = PFA(f,factors)
 
         catch
             fh = cyclicDFT(f);
+            
         end
     end
 end
